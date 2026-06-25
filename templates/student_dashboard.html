@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Student Dashboard</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:#f1f5f9;
+}
+
+.header{
+background:#2563eb;
+color:white;
+padding:20px;
+}
+
+.container{
+padding:25px;
+}
+
+.cards{
+display:flex;
+gap:20px;
+flex-wrap:wrap;
+margin-top:20px;
+}
+
+.card{
+flex:1;
+min-width:220px;
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,.1);
+text-align:center;
+}
+
+.card p{
+font-size:30px;
+font-weight:bold;
+color:#2563eb;
+}
+
+.exam-box{
+background:white;
+padding:20px;
+margin-top:25px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,.1);
+}
+
+.exam-box input{
+padding:10px;
+width:250px;
+}
+
+.exam-box button{
+padding:10px 20px;
+background:#2563eb;
+color:white;
+border:none;
+border-radius:5px;
+cursor:pointer;
+}
+
+.history{
+background:white;
+padding:20px;
+margin-top:25px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,.1);
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+th,td{
+padding:10px;
+border:1px solid #ddd;
+text-align:center;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="header">
+
+<h2>
+Welcome, {{ session['user'] }}
+</h2>
+
+</div>
+
+<div class="container">
+
+<div class="cards">
+
+<div class="card">
+<h3>Total Attempts</h3>
+<p>{{ attempts }}</p>
+</div>
+
+<div class="card">
+<h3>Best Score</h3>
+<p>{{ best_score }}</p>
+</div>
+
+<div class="card">
+<h3>Average Score</h3>
+<p>{{ avg_score }}</p>
+</div>
+
+</div>
+
+<div class="exam-box">
+
+<h3>Enter Exam Code</h3>
+
+<form action="/verify_exam_code" method="POST">
+
+<input
+type="text"
+name="exam_code"
+placeholder="Enter Exam Code"
+required>
+
+<button type="submit">
+Start Exam
+</button>
+
+</form>
+
+</div>
+
+<div class="history">
+
+<h3>Attempt History</h3>
+
+<table>
+
+<tr>
+<th>Date</th>
+<th>Score</th>
+</tr>
+
+{% for row in history %}
+
+<tr>
+<td>{{ row[1] }}</td>
+<td>{{ row[0] }}</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+</div>
+
+</body>
+</html>
