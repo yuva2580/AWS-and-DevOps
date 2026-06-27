@@ -14,9 +14,16 @@ app = Flask(__name__)
 app.secret_key = os.environ.get("SECRET_KEY")
 
 def get_db():
-    conn = psycopg2.connect(os.getenv("DATABASE_URL"))
-
+    conn = psycopg2.connect(
+        host=os.getenv("DB_HOST"),
+        database=os.getenv("DB_NAME"),
+        user=os.getenv("DB_USER"),
+        password=os.getenv("DB_PASSWORD"),
+        port=os.getenv("DB_PORT")
+    )
     return conn
+
+
 
 def send_otp_email(receiver_email, otp):
     sender_email = os.environ.get("EMAIL_USER")
