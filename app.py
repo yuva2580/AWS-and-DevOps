@@ -1,3 +1,4 @@
+from flask.cli import load_dotenv
 from werkzeug.security import check_password_hash, generate_password_hash
 from flask import Flask, jsonify,render_template,request,redirect,session
 import psycopg2
@@ -6,8 +7,9 @@ import pandas as pd
 import random
 import smtplib
 from email.mime.text import MIMEText
+from dotenv import load_dotenv
 
-
+load_dotenv()
 
 
 app = Flask(__name__)
