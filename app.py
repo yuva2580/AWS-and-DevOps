@@ -1,4 +1,4 @@
-from flask.cli import load_dotenv
+
 from werkzeug.security import check_password_hash, generate_password_hash
 from flask import Flask, jsonify,render_template,request,redirect,session
 import psycopg2
