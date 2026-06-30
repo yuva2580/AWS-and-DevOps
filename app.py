@@ -196,7 +196,7 @@ def dashboard_data():
     conn = get_db()
     cursor = conn.cursor()
 
-    # 👇 total students of THIS admin only
+    #  total students of THIS admin only
     cursor.execute("""
         SELECT COUNT(*)
         FROM users
@@ -204,7 +204,7 @@ def dashboard_data():
     """, (admin_id,))
     total = cursor.fetchone()[0]
 
-    # 👇 attempted students of THIS admin only
+    #  attempted students of THIS admin only
     cursor.execute("""
         SELECT COUNT(DISTINCT regno)
         FROM results
@@ -880,7 +880,6 @@ def quiz():
     cursor.execute("SELECT * FROM questions WHERE admin_id=%s",(session.get('student_admin_id'),))
     questions=[list(q) for q in cursor.fetchall()]
 
-    print("SESSION USER:", session.get('user'))  # Debugging line
    
     cursor.execute("SELECT exam_time, total_questions FROM settings WHERE id=1")
     settings=cursor.fetchone()
